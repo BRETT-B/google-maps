@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="googleMapsApp">
+<head>
+	<title>
+	</title>
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?libraries=places&v=3.exp&signed_in=true&key=AIzaSyCHBNUrwUYAPNrwu1-vn4aK-zxL1dvSUFI"></script>
+	<script type="text/javascript" src="js/cities.js"></script>
+	<script type="text/javascript" src="js/scripts.js"></script>
+</head>
+<body ng-controller="googleMapsController">
+	<div id="map">
+	</div>
+	<table border=1>
+		<tr ng-repeat="city in cities track by $index">
+			<td><a href="" ng-click="triggerClick($index)">{{city.city}}</a></td>
+			<!-- <td>{{city.state}}</td> -->
+			<!-- <td>{{city.yearEstimate}}</td>
+			<td>{{city.lastCensus}}</td>
+			<td>{{city.change}}</td>
+			<td>{{city.landArea}}</td>
+			<td>{{city.lastPopDensity}}</td>
+			<td>{{city.lat}}</td>
+			<td>{{city.lon}}</td>
+			<td>{{city.latLon}}</td> -->
+		</tr>
+	</table>
+	<button type="button" ng-repeat="city in cities" ng-click="triggerClick($index)">Click Me!</button>
+</body>
+</html>
