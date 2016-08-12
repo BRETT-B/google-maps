@@ -12,20 +12,23 @@
 <body ng-controller="googleMapsController">
 	<div id="map">
 	</div>
-	<table border=1>
-		<tr ng-repeat="city in cities track by $index">
-			<td><a href="" ng-click="triggerClick($index)">{{city.city}}</a></td>
-			<!-- <td>{{city.state}}</td> -->
-			<!-- <td>{{city.yearEstimate}}</td>
-			<td>{{city.lastCensus}}</td>
-			<td>{{city.change}}</td>
-			<td>{{city.landArea}}</td>
-			<td>{{city.lastPopDensity}}</td>
-			<td>{{city.lat}}</td>
-			<td>{{city.lon}}</td>
-			<td>{{city.latLon}}</td> -->
-		</tr>
-	</table>
-	<button type="button" ng-repeat="city in cities" ng-click="triggerClick($index)">Click Me!</button>
+	<div id="list-window">
+		<form ng-submit="updateMarkers()">
+			<input id="filter-input" ng-model="citiesFilter" type="text">
+			<input value="Update the map" type="submit">
+			<table border=1>
+				<tr ng-repeat="city in (filteredCities = (cities | filter: citiesFilter)) track by $index">
+					<td>
+						<a href="" ng-click="triggerClick($index)">{{city.city}}</a>
+					</td>
+					<td>{{city.state}}</td>
+					<td>
+						<button type="submit" ng-click="getDirections(city.lat, city.lon)">Get Directions</button>
+						<button type="submit" ng-click="zoomToCity(city.lat, city.lon)">Zoom to City</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
 </body>
 </html>
